@@ -15,16 +15,16 @@
 				<div class="card-body">
 					<div class="card-text" style="white-space:pre-line;">{{ question.content }}</div>
 					<div class="d-flex justify-content-end">
+						<div class="badge badge-light p-2 text-left">
+							<div class="mb-2">작성자 : {{ question.user.userName }}</div>
+							<div>{{ question.create_date | datetime }}</div>
+						</div>
 						{% if question.modify_date %}
-						<div class="badge badge-light p-2 text-left mr-1">
-							<div class="mb-2">modified at</div>
+						<div class="badge badge-light p-2 text-left ml-1">
+							<div class="mb-2">수정일</div>
 							<div>{{ question.modify_date | datetime }}</div>
 						</div>
 						{% endif %}
-						<div class="badge badge-light p-2 text-left">
-							<div class="mb-2">{{ question.user.userName }}</div>
-							<div>{{ question.create_date | datetime }}</div>
-						</div>
 					</div>
 					{% if g.user == question.user%}
 					<div class = "my-3" >
@@ -75,10 +75,16 @@
 					<div class="card-body">
 						<div class="card-text" style="white-space:pre-line;">{{ answer.content }}</div>
 						<div class="d-flex justify-content-end">
-							<div class="badge badge-light p-2 text-left">
-								<div class="mb-2">{{ answer.user.userName }}</div>
+							<div class="badge badge-light p-2 text-left ">
+								<div class="mb-2">작성자 : {{ answer.user.userName }}</div>
 								<div>{{ answer.create_date | datetime  }}</div>
 							</div>
+							{% if answer.modify_date %}
+								<div class="badge badge-light p-2 text-left ml-1">
+									<div class="mb-2">수정일</div>
+									<div>{{ answer.modify_date | datetime  }}</div>
+								</div>
+							{% endif %}
 						</div>
 						{% if g.user == answer.user %}
 						<div class="my-3">
