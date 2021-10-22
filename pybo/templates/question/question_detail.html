@@ -13,7 +13,7 @@
         <div class="col-11"> <!-- 질문영역 -->
 			<div class="card">
 				<div class="card-body">
-					<div class="card-text" style="white-space:pre-line;">{{ question.content }}</div>
+					<div class="card-text">{{ question.content | markdown }}</div>
 					<div class="d-flex justify-content-end">
 						<div class="badge badge-light p-2 text-left">
 							<div class="mb-2">작성자 : {{ question.user.userName }}</div>
@@ -73,7 +73,7 @@
 			<div class="col-11">
 				<div class="card">
 					<div class="card-body">
-						<div class="card-text" style="white-space:pre-line;">{{ answer.content }}</div>
+						<div class="card-text">{{ answer.content | markdown }}</div>
 						<div class="d-flex justify-content-end">
 							<div class="badge badge-light p-2 text-left ">
 								<div class="mb-2">작성자 : {{ answer.user.userName }}</div>

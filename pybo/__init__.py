@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy import MetaData
 
+from flaskext.markdown import Markdown
+
 # config.py 파일을 import
 import config
 
@@ -52,5 +54,8 @@ def create_app():
     # 템플릿 필터
     from .filter import format_datetime
     app.jinja_env.filters['datetime'] = format_datetime
+
+    #Markdown
+    Markdown(app, extentions=["nl2br", "fenced_code"])
 
     return app
