@@ -49,7 +49,7 @@
         <!--이전페이지-->
         {% if question_list.has_prev %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ question_list.prev_num }}">이전</a>
+            <a class="page-link" href="#" data-page="{{ question_list.prev_num }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -60,7 +60,7 @@
             {% if page_num %}
                 {% if page_num != question_list.page %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                    <a class="page-link" href="#" data-page="{{ page_num }}">{{ page_num }}</a>
                 </li>
                 {% else %}
                 <li class="page-item active" aria-current="page">
@@ -76,7 +76,7 @@
         <!-- 다음 페이지-->
         {% if question_list.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ question_list.next_num }}">다음</a>
+            <a class="page-link" data-page="{{ question_list.next_num }}" href="#">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -87,6 +87,24 @@
 
     <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
 </div>
+<from id="searchForm" method="get" actions="{{ url_for('question_list') }}">
+    <input type="hidden" id = "kw" name = "kw" value = "{{ kw or '' }}">
+    <input type="hidden" id = "page" name = "page" value = "{{ page }}">
+</from>
 {% endblock %}
-
+{% block script %}
+<script>
+    $(function(){
+        $(".page-like").on('click', function(){
+          $("#page").val($(".kw").val())
+          $("#searchForm").submit()
+        })
+        $("#btn_search").on('click', function(){
+          $("#page").val($(".kw").val())
+          $("#page").val(1)
+          $("#searchForm").submit()
+        })
+    })
+</script>
+{% endblock %}
 
