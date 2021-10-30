@@ -86,10 +86,10 @@
     </ul>
 
     <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
-      <form id="searchForm" method="get" action="{{ url_for('question._list') }}">
+    <form id="searchForm" method="get" action="{{ url_for('question._list') }}">
         <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
         <input type="hidden" id="page" name="page" value="{{ page }}">
-      </form>
+    </form>
 </div>
 {% endblock %}
 {% block script %}
