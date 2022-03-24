@@ -2,14 +2,14 @@ from pybo import db  # __init__.py에서 전역으로 저장한 db변수를 impo
 
 question_voter = db.Table(
     'question_voter',
-    db.Column('user_id', db.Integer, db.ForeignKey("user.id", ondelete="CASCADE", primary_key=True)),
-    db.Column('question_id', db.Integer, db.ForeignKey('question.id', ondelete="CASCADE", primary_key=True))
+    db.Column('user_id', db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), primary_key=True),
+    db.Column('question_id', db.Integer, db.ForeignKey('question.id', ondelete="CASCADE"), primary_key=True)
 )
 
 answer_voter = db.Table(
     'answer_voter',
-    db.Column('user_id', db.Integer, db.ForeignKey("user.id", ondelete="CASCADE", primary_key=True)),
-    db.Column('answer_id', db.Integer, db.ForeignKey('answer.id', ondelete="CASCADE", primary_key=True))
+    db.Column('user_id', db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), primary_key=True),
+    db.Column('answer_id', db.Integer, db.ForeignKey('answer.id', ondelete="CASCADE"), primary_key=True)
 )
 
 
