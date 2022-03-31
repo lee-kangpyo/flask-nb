@@ -29,8 +29,8 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(config)  # config.py 파일을 플라스크 app 의 환경변수로 적용
-
+    # app.config.from_object(config)  # config.py 파일을 플라스크 app 의 환경변수로 적용
+    app.config.from_envvar('APP_CONFIG_FILE')
     # ORM(Object Relational Mapping)
     db.init_app(app)
 
