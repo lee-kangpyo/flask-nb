@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -7,7 +7,7 @@ from sqlalchemy import MetaData
 from flaskext.markdown import Markdown
 
 # config.py 파일을 import
-import config
+# import config
 
 
 # 블루프린트 같은 다른 모듈에서 db 객체를 import 하기위해 전역으로 설정
@@ -25,6 +25,10 @@ naming_convention = {
 
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 migrate = Migrate()
+
+
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 def create_app():
@@ -57,5 +61,8 @@ def create_app():
 
     #Markdown
     Markdown(app, extentions=["nl2br", "fenced_code"])
+
+    #오류 페이지 처리
+    app.register_error_handler(404, page_not_found)
 
     return app
